@@ -1,7 +1,11 @@
 #include <iostream>
+#include <set>
 using namespace std;
 
-//prblink:https://practice.geeksforgeeks.org/problems/minimum-xor-value-pair/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+// prblink:https://practice.geeksforgeeks.org/problems/a512e4b2e812b6df2159b19cc7090ffc1ab056dd/1?utm_source=geeksforgeeks&utm_medium=article_practice_tab&utm_campaign=article_practice_tab
+//brute force O(N^3)
+// using prefixrray O(N^2)
+// using trie : O(N)
 
 struct Node{
 	Node *bits[2];
@@ -38,17 +42,17 @@ public:
 		}
 		node->setend();
 	}
-	int	search_same_bits(int n){
+	int	search_opp_bits(int n){
 		int ans = 0;
 		Node *node = root;
 		for(int i=31; i>=0 ;i--){
 			bool bit = n & (1 << i);
-			if (node->contain(node, bit)){
-				node = node->getnext(bit);
-			}
-			else{
+			if (node->contain(node, !bit)){
 				node = node->getnext(!bit);
 				ans |= (1 << i);
+			}
+			else{
+				node = node->getnext(bit);
 			}
 			// cout << n << ' ' << ' ' << bit << ' '<< i << ' ' << ans << endl;
 		}
@@ -56,27 +60,25 @@ public:
 	}
 };
 
+
 class Solution{   
 public:
-    int minxorpair(int N, int arr[]){
-		int ans = 2e9;
+    int maxSubarrayXOR(int N, int arr[]){
 		trie tr;
-        for(int i=0 ;i<N; i++){
-			if (!i)
-				tr.insert(arr[i]);
-			else{
-				ans = min(ans, tr.search_same_bits(arr[i]));
-				tr.insert(arr[i]);
-			}
+		int ans = arr[0], xr = arr[0];
+		tr.insert(arr[0]);
+		for(int i=1; i<N; i++){
+			xr = xr ^ arr[i];
+			ans = max({ans, xr, tr.search_opp_bits(xr)});
+			tr.insert(xr);
 		}
 		return ans;
     }
 };
 
-
 int main()
 {
 	Solution s;
-	int arr[3]={9, 5, 3};
-	cout << s.minxorpair(3, arr) << endl;
+	int arr[4]={1,2,3,4};
+	cout << s.maxSubarrayXOR(4, arr) << endl;
 }
