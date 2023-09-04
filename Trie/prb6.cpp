@@ -10,7 +10,7 @@ using namespace std;
 // ● Design a trie
 // ○ void insert(const vector<string> &path) ⇒ adds a path to the trie
 // ○ bool subpath_exist(const vector<string> &path) ⇒ True if such sub-path ex
-
+ 
 
 class trie{
 	map<string, trie*> childs;
