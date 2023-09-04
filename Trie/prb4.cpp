@@ -1,112 +1,91 @@
 #include <iostream>
 #include <vector>
-#include <cmath>
-#include <algorithm>
 using namespace std;
 
-// prblink: https://leetcode.com/problems/maximum-xor-with-an-element-from-array/
-
+// prblink:https://leetcode.com/problems/replace-words/
 
 struct Node{
-	Node *bits[2];
+	Node *links[26];
 	bool is_leaf=0;
 
-	bool contain(int bit){
-		return (bits[bit] != nullptr);
+	bool contain(char c){
+		return (links[c-'a'] != nullptr);
 	}
-	void	putnode(Node *node, int bit){
-		bits[bit] = node;
+	void put(Node *node, char c){
+		links[c - 'a'] = node;
 	}
-	Node	*getnext(int bit){
-		return bits[bit];
+	Node *getnext(char c){
+		return links[c-'a'];
 	}
-	void	setend(){
+	void setend(){
 		is_leaf = 1;
 	}
 };
 
-struct trie{
-public:
-	
+class trie{
 	Node *root;
+public:
 	trie(){
 		root = new Node();
 	}
-	void	insert(int n){
+	void insert(string s){
 		Node *node = root;
-		for(int i=31; i>=0; i--){
-			bool bit = n & (1 << i);
-			if (!node->contain(bit))
-				node->putnode(new Node(), bit);
-			node = node->getnext(bit);
+		for(char c : s){
+			if (!node->contain(c)){
+				node->put(new Node(), c);
+			}
+			node = node->getnext(c);
 		}
 		node->setend();
 	}
-	int	search_max(int n){
-		int ans = 0;
+	string search_root(string s){
 		Node *node = root;
-		for(int i=31; i>=0; i--){
-			bool bit = n & (1 << i);
-			if (node->contain(!bit)){
-				ans |= (1 << i);
-				node = node->getnext(!bit);
+		string ans;
+		for(int i=0; i<s.size(); i++){
+			if (node->contain(s[i]))
+			{
+				ans += s[i];
+				node = node->getnext(s[i]);
 			}
 			else{
-				node = node->getnext(bit);
+				ans += s.substr(i);
+				return ans;
 			}
+			if (node->is_leaf)
+				return ans;
 		}
 		return ans;
 	}
 };
 
-bool compare(vector<int> &v1, vector<int> &v2){
-	return (v1[1] < v2[1]);
-}
 class Solution {
 public:
-    vector<int> maximizeXor(vector<int>& nums, vector<vector<int>>& queries) {
-		int n = queries.size();
-		vector<int> ans(n);
+    string replaceWords(vector<string>& dict, string sentence) {
 		trie tr;
-		vector<vector<int>> arr(n);
-		int i=0,flg=0;
-		for(auto &v : queries){
-			arr[i] = {v[0], v[1], i};
-			i++;
-		}
-		sort(arr.begin(), arr.end(), compare);
-		sort(nums.begin(), nums.end());
-		i = 0;
-		for(auto &v : arr){
-			int x = v[0], m = v[1], pos = v[2];
-			int prei = i;
-			while(i < nums.size() && nums[i] <= m)
-			{
-				tr.insert(nums[i]);
-				// cout << nums[i] << ' ' << m << ' '<<endl;
-				flg = 1;
-				i++;
+		for(string s : dict)
+			tr.insert(s);
+		string ans, sub;
+		for(int i=0; i<=sentence.size(); i++){
+			if (i == sentence.size() || sentence[i] == ' '){
+				// cout << sub << "::"<<endl;
+				ans += tr.search_root(sub);
+				if (i != sentence.size())
+					ans += ' ';
+				sub.clear();
 			}
-			if (!flg){
-				ans[pos] = -1;
-				// cout << ans[pos] << endl;
-				continue;
-			}
-			int val = tr.search_max(x);
-			ans[pos] = val;
-			// cout << ans[pos] << endl;
+			else
+				sub += sentence[i];
 		}
 		return ans;
     }
 };
 
-int main()
+int	main()
 {
-	vector<int> nums={5,2,4,6,6,3};
-	vector<vector<int>> q={{12,4},{8,1},{6,3}};
+	vector<string> dict={"cat","bat","rat"};
 	Solution s;
-	vector<int> ans = s.maximizeXor(nums, q);
-	for(int i : ans)
-		cout << i << ' ';
-	cout << endl;
+	cout << s.replaceWords(dict, "the cattle was rattled by the battery") << endl;
+
+	dict={"a","b","c"};
+	cout << s.replaceWords(dict, "aadsfasf absbs bbab cadsfafs") << endl;
 }
