@@ -7,15 +7,15 @@ using namespace std;
 
 // prbLink: https://leetcode.com/problems/edit-distance/
 
-
-// horse 
-// ros 
 class Solution {
+    vector<vector<int>> dp;
     int rec(int i, int j, string &s1, string &s2){
 		if (i == s1.size())
 			return s2.size() - j;
 		else if (j == s2.size())
 			return s1.size() - i;
+        if (dp[i][j] != -1)
+            return dp[i][j];
 		int c1, c2, c3, c4;
 		c1 = c2 = c3 = c4 = INT_MAX;
 		if (s1[i] == s2[j])
@@ -27,14 +27,15 @@ class Solution {
 		}
 		int ans = min(c1, c2);
 		ans = min({ans, c3, c4});
-		return ans;
+		return dp[i][j] = ans;
     }
 public:
     int minDistance(string word1, string word2) {
+        dp = vector<vector<int>>(word1.size(), vector<int>(word2.size(), -1));
+
         return rec(0, 0, word1, word2);
     }
 };
-
 
 
 int	main() {
