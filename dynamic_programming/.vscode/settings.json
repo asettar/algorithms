@@ -1,0 +1,14 @@
+{
+	"C_Cpp.default.enableConfigurationSquiggles": true,
+	"C_Cpp.commentContinuationPatterns": [
+
+		"/**"
+	],
+	"C_Cpp.doxygen.generateOnType": false,
+	"files.associations": {
+		"vector": "cpp",
+		"iosfwd": "cpp",
+		"iterator": "cpp",
+		"ostream": "cpp"
+	}
+}
