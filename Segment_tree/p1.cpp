@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
+// prb link : https://codeforces.com/contest/339/problem/D
 struct segTree {
 	int identity = 0;
 	int fn(int a, int b) {
