@@ -81,7 +81,7 @@ int32_t	main() {
 	vector<int> a(n);
 	for(int &i : a) cin >> i;
 	segTree s(a);
-	// cout << s.s[1].mx1 << ' ' << s.s[1].mx2 << endl;
+	// cerr << s.s[1].mx1 << ' ' << s.s[1].mx2 << endl;
 	int q; cin >> q;
 	while(q--){
 		char c; cin >> c;
