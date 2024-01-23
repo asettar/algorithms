@@ -1,14 +1,6 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-#define int long long
-#define double long double
-#define vi vector<int>
-#define all(x) x.begin(), x.end()
-#define	rall(x) x.rbegin(), x.rend()
-#define endl '\n'
-const int mod = 1e9+7;
-const int maxn = 1e5 + 10;
 
 // prblink : https://www.spoj.com/problems/INVCNT/
 
