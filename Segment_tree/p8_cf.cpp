@@ -28,6 +28,7 @@ const int maxn = 1e5 + 10;
 
 // f(l, r, x) = the number of elements between l and r equal to x
 // find number of pairs such that   cnt_left_equal_ai > cnt_right_equal aj
+// prb link : https://codeforces.com/contest/459/problem/D
 
 struct segTree {
 	int identity = 0;
@@ -90,7 +91,7 @@ void	solve()
 	int	n; cin >> n;
 	vector<int> a(n);
 	for(int &i : a) cin >> i;
-	vector<int> cnt(n + 2);
+	vector <int> cnt(n + 2);
 	segTree s(cnt);
 	map<int, int> f1, f2;
 	vector<int> left, right;
