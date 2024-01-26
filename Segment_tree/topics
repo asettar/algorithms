@@ -1,6 +1,0 @@
-min max range query
-point updates
-sum range query
-point update
-
-// segment tree : create array with size 4 n   n is the size of the array wich you want to find the min. max for queries

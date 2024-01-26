@@ -5,6 +5,7 @@
 #include <numeric>
 using namespace std;
 
+//prblink : https://leetcode.com/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/description/
 
 // brute force : O(n ^ 2)
 	// class Solution {
