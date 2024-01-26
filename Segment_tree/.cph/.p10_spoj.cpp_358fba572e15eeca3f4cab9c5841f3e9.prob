@@ -1,0 +1,1 @@
+{"name":"Local: p10_spoj","url":"/Users/asettar/Desktop/algo/Segment_tree/p10_spoj.cpp","tests":[{"id":1706210377979,"input":"6\n10 8 3 0 6 4\n2\n25\n20","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/asettar/Desktop/algo/Segment_tree/p10_spoj.cpp","group":"local","local":true}

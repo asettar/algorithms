@@ -72,7 +72,7 @@ public:
 			mp[arr[i]] = i + 1;
 		}
 		int mx = arr.size() + 2;
-		vector<int> cnt(mx);
+		vector <int> cnt(mx);
 		segTree s(cnt);
 		for(int &i : nums) {
 			int nice_i = mp[i];
@@ -85,7 +85,7 @@ public:
 };
 
 
-int main(){
+int main() {
 	Solution s;
 	vector<int> a = {0,1,0,3,2,3};
 	cout << s.lengthOfLIS(a) << endl;
@@ -93,4 +93,8 @@ int main(){
 	cout << s.lengthOfLIS(a) << endl;
 	a = {-2, -1};
 	cout << s.lengthOfLIS(a) << endl;
+}
+
+int main() {
+
 }
