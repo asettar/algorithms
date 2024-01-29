@@ -23,6 +23,9 @@
 		"chrono": "cpp",
 		"list": "cpp",
 		"*.tcc": "cpp",
-		"forward_list": "cpp"
+		"forward_list": "cpp",
+		"utility": "cpp",
+		"__locale": "cpp",
+		"ranges": "cpp"
 	}
 }
