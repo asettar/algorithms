@@ -28,6 +28,7 @@
 		"__locale": "cpp",
 		"ranges": "cpp",
 		"iosfwd": "cpp",
-		"__node_handle": "cpp"
+		"__node_handle": "cpp",
+		"istream": "cpp"
 	}
 }
