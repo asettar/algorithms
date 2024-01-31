@@ -109,6 +109,7 @@ int rec(int i, int jump, vector<int> &a, segTree &s){
 	else ans = rec(pos.second, jump + 1, a, s);
 	return dp[i][jump % 2] = ans;
 }
+
 void	solve()
 {
 	int n; cin >> n;

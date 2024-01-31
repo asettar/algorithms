@@ -26,6 +26,7 @@
 		"forward_list": "cpp",
 		"utility": "cpp",
 		"__locale": "cpp",
-		"ranges": "cpp"
+		"ranges": "cpp",
+		"iosfwd": "cpp"
 	}
 }
