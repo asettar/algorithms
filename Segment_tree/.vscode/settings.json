@@ -27,6 +27,7 @@
 		"utility": "cpp",
 		"__locale": "cpp",
 		"ranges": "cpp",
-		"iosfwd": "cpp"
+		"iosfwd": "cpp",
+		"__node_handle": "cpp"
 	}
 }
